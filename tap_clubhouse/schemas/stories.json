@@ -60,7 +60,7 @@
       }
     },
     "estimate": {
-      "type": "integer"
+      "type": ["null", "integer"]
     },
     "created_at": {
       "type": "string",
@@ -135,7 +135,7 @@
       "type": "integer"
     },
     "epic_id": {
-      "type": "integer"
+      "type": ["null", "integer"]
     },
     "tasks": {
       "type": "array",
@@ -175,7 +175,7 @@
             "type": "integer"
           },
           "completed_at": {
-            "type": "string",
+            "type": ["null", "string"],
             "format": "date-time"
           },
           "complete": {
@@ -185,7 +185,7 @@
       }
     },
     "deadline": {
-      "type": "string",
+      "type": ["null", "string"],
       "format": "date-time"
     },
     "name": {
