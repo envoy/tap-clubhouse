@@ -82,7 +82,7 @@ def sync_stories():
         "updated_at_start": start,
     }
 
-    for row in enumerate(gen_request(get_url("stories"), data=data)):
+    for _, row in enumerate(gen_request(get_url("stories"), data=data)):
         LOGGER.info("Story {}: Syncing".format(row["id"]))
         utils.update_state(STATE, "stories", row["updated_at"])
         singer.write_record("stories", row)
