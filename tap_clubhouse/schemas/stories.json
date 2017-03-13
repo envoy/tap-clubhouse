@@ -1,0 +1,211 @@
+{
+  "type": "object",
+  "properties": {
+    "follower_ids": {
+      "type": "array",
+      "items": {
+        "type": ["null", "string"]
+      }
+    },
+    "position": {
+      "type": "integer"
+    },
+    "owner_ids": {
+      "type": "array",
+      "items": {
+        "type": ["null", "string"]
+      }
+    },
+    "linked_file_ids": {
+      "type": "array",
+      "items": {
+        "type": ["null", "integer"]
+      }
+    },
+    "comments": {
+      "type": "array",
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "author_id": {
+            "type": "string"
+          },
+          "story_id": {
+            "type": "integer"
+          },
+          "position": {
+            "type": "integer"
+          },
+          "mention_ids": {
+            "type": "array",
+            "items": {
+              "type": ["null", "string"]
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "text": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "estimate": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "story_type": {
+      "type": "string"
+    },
+    "file_ids": {
+      "type": "array",
+      "items": {
+        "type": ["null", "integer"]
+      }
+    },
+    "id": {
+      "type": "integer"
+    },
+    "story_links": {
+      "type": "array",
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subject_id": {
+            "type": "integer"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "verb": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "object_id": {
+            "type": "integer"
+          },
+          "id": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "project_id": {
+      "type": "integer"
+    },
+    "epic_id": {
+      "type": "integer"
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": ["null", "object"],
+        "properties": {
+          "story_id": {
+            "type": "integer"
+          },
+          "position": {
+            "type": "integer"
+          },
+          "owner_ids": {
+            "type": "array",
+            "items": {
+              "type": ["null", "string"]
+            }
+          },
+          "mention_ids": {
+            "type": "array",
+            "items": {
+              "type": ["null", "string"]
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "completed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "complete": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "archived": {
+      "type": "boolean"
+    },
+    "requested_by_id": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "workflow_state_id": {
+      "type": "integer"
+    }
+  }
+}
