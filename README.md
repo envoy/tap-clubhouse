@@ -42,14 +42,6 @@ This tap:
     {"stories": "2017-01-17T20:32:05Z"}
     ```
 
-    If you optionally save state when you run this tap, the state file
-    may look slightly different on subsequent runs. It'll be in the format
-    that singer writes it out as.
-
-    ```json
-    {"value": {"stories": "2017-01-17T20:32:05Z"}, "type": "STATE"}
-    ```
-
 5. Run the application
 
     `tap-clubhouse` can be run with:

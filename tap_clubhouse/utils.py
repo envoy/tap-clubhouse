@@ -76,9 +76,6 @@ def parse_args(required_config_keys):
 
     if args.state:
         state = load_json(args.state)
-        if "type" in state:
-            state = state["value"]
-
     else:
         state = {}
 
