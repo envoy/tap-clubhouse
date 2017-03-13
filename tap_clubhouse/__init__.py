@@ -14,16 +14,16 @@ BASE_URL = "https://api.clubhouse.io"
 CONFIG = {}
 STATE = {}
 
-endpoints = {
+ENDPOINTS = {
     "stories": "/api/v1/stories/search",
 }
 
-logger = singer.get_logger()
-session = requests.Session()
+LOGGER = singer.get_logger()
+SESSION = requests.Session()
 
 
 def get_url(endpoint, **kwargs):
-    return BASE_URL + endpoints[endpoint].format(**kwargs)
+    return BASE_URL + ENDPOINTS[endpoint].format(**kwargs)
 
 
 @utils.ratelimit(100, 60)
@@ -35,17 +35,17 @@ def request(url, params=None, data=None):
         headers["User-Agent"] = CONFIG["user_agent"]
 
     req = requests.Request("POST", url, params=params, data=data, headers=headers).prepare()
-    logger.info("POST {}".format(req.url))
-    resp = session.send(req)
+    LOGGER.info("POST {}".format(req.url))
+    resp = SESSION.send(req)
 
     if "Retry-After" in resp.headers:
         retry_after = int(resp.headers["Retry-After"])
-        logger.info("Rate limit reached. Sleeping for {} seconds".format(retry_after))
+        LOGGER.info("Rate limit reached. Sleeping for {} seconds".format(retry_after))
         time.sleep(retry_after)
         return request(url, params)
 
     elif resp.status_code >= 400:
-        logger.error("POST {} [{} - {}]".format(req.url, resp.status_code, resp.content))
+        LOGGER.error("POST {} [{} - {}]".format(req.url, resp.status_code, resp.content))
         sys.exit(1)
 
     return resp
@@ -82,8 +82,8 @@ def sync_stories():
         "updated_at_start": start,
     }
 
-    for i, row in enumerate(gen_request(get_url("stories"), data=data)):
-        logger.info("Story {}: Syncing".format(row["id"]))
+    for row in enumerate(gen_request(get_url("stories"), data=data)):
+        LOGGER.info("Story {}: Syncing".format(row["id"]))
         utils.update_state(STATE, "stories", row["updated_at"])
         singer.write_record("stories", row)
 
@@ -91,11 +91,11 @@ def sync_stories():
 
 
 def do_sync():
-    logger.info("Starting Clubhouse sync")
+    LOGGER.info("Starting Clubhouse sync")
 
     sync_stories()
 
-    logger.info("Completed sync")
+    LOGGER.info("Completed sync")
 
 
 def main():
