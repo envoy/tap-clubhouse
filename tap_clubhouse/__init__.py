@@ -18,26 +18,33 @@ STATE = {}
 
 ENDPOINTS = {
     "stories": "/api/v1/stories/search",
+    "workflows": "/api/v1/workflows",
 }
 
 LOGGER = singer.get_logger()
 SESSION = requests.Session()
 
 
-def get_url(endpoint, **kwargs):
-    return BASE_URL + ENDPOINTS[endpoint].format(**kwargs)
+def get_url(endpoint):
+    return BASE_URL + ENDPOINTS[endpoint]
 
 
 @utils.ratelimit(100, 60)
 def request(url, params=None, data=None):
     params = params or {}
-    data = data or {}
+
+    if data:
+        verb = "POST"
+    else:
+        verb = "GET"
+        data = {}
+
     headers = {}
     if "user_agent" in CONFIG:
         headers["User-Agent"] = CONFIG["user_agent"]
 
-    req = requests.Request("POST", url, params=params, data=data, headers=headers).prepare()
-    LOGGER.info("POST {}".format(req.url))
+    req = requests.Request(verb, url, params=params, data=data, headers=headers).prepare()
+    LOGGER.info("{} {}".format(verb, req.url))
     resp = SESSION.send(req)
 
     if "Retry-After" in resp.headers:
@@ -47,7 +54,7 @@ def request(url, params=None, data=None):
         return request(url, params)
 
     elif resp.status_code >= 400:
-        LOGGER.error("POST {} [{} - {}]".format(req.url, resp.status_code, resp.content))
+        LOGGER.error("{} {} [{} - {}]".format(verb, req.url, resp.status_code, resp.content))
         sys.exit(1)
 
     return resp
@@ -92,10 +99,24 @@ def sync_stories():
     singer.write_state(STATE)
 
 
+def sync_time_filtered(entity):
+    singer.write_schema(entity, utils.load_schema(entity), ["id"])
+    start = get_start(entity)
+
+    LOGGER.info("Syncing {} from {}".format(entity, start))
+    for row in gen_request(get_url(entity)):
+        if row['updated_at'] >= start:
+            utils.update_state(STATE, entity, row['updated_at'])
+            singer.write_record(entity, row)
+
+    singer.write_state(STATE)
+
+
 def do_sync():
     LOGGER.info("Starting Clubhouse sync")
 
     sync_stories()
+    sync_time_filtered("workflows")
 
     LOGGER.info("Completed sync")
 
