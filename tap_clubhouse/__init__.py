@@ -3,12 +3,12 @@
 import sys
 import time
 import datetime
+from operator import itemgetter
 
 import requests
 import singer
 
 from tap_clubhouse import utils
-from operator import itemgetter
 
 
 REQUIRED_CONFIG_KEYS = ["api_token", "start_date"]
