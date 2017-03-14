@@ -1,0 +1,54 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "two_factor_auth_activated": {
+      "type": "boolean"
+    },
+    "deactivated": {
+      "type": "boolean"
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "role": {
+            "type": "string"
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "email_address": {
+            "type": "string"
+          },
+          "gravatar_hash": {
+            "type": "string"
+          },
+          "initials": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

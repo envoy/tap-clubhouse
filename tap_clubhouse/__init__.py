@@ -19,6 +19,7 @@ STATE = {}
 ENDPOINTS = {
     "stories": "/api/v1/stories/search",
     "workflows": "/api/v1/workflows",
+    "users": "/api/v1/users",
 }
 
 LOGGER = singer.get_logger()
@@ -117,6 +118,7 @@ def do_sync():
 
     sync_stories()
     sync_time_filtered("workflows")
+    sync_time_filtered("users")
 
     LOGGER.info("Completed sync")
 
