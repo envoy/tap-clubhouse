@@ -75,11 +75,20 @@ def get_start(entity):
     return STATE[entity]
 
 
-def gen_request(url, params=None, data=None):
+def gen_request(entity, params=None, data=None):
+    url = get_url(entity)
     params = params or {}
     params["token"] = CONFIG["api_token"]
     data = data or {}
     rows = request(url, params, data).json()
+
+    # fix clubhouse user not having created_at/updated_at
+    if entity == "users":
+        for row in rows:
+            permission = row["permissions"][0]
+            row["created_at"] = permission["created_at"]
+            row["updated_at"] = permission["updated_at"]
+
     for row in sorted(rows, key=itemgetter("updated_at")):
         yield row
 
@@ -92,7 +101,7 @@ def sync_stories():
         "updated_at_start": start,
     }
 
-    for _, row in enumerate(gen_request(get_url("stories"), data=data)):
+    for _, row in enumerate(gen_request("stories", data=data)):
         LOGGER.info("Story {}: Syncing".format(row["id"]))
         utils.update_state(STATE, "stories", row["updated_at"])
         singer.write_record("stories", row)
@@ -105,9 +114,9 @@ def sync_time_filtered(entity):
     start = get_start(entity)
 
     LOGGER.info("Syncing {} from {}".format(entity, start))
-    for row in gen_request(get_url(entity)):
-        if row['updated_at'] >= start:
-            utils.update_state(STATE, entity, row['updated_at'])
+    for row in gen_request(entity):
+        if row["updated_at"] >= start:
+            utils.update_state(STATE, entity, row["updated_at"])
             singer.write_record(entity, row)
 
     singer.write_state(STATE)
