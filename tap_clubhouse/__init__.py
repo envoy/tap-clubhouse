@@ -2,6 +2,7 @@
 
 import sys
 import time
+import datetime
 
 import requests
 import singer
@@ -60,7 +61,7 @@ def get_start(entity):
         # returning the same record on subsequent runs because it treats
         # `updated_at_start` as inclusive
         start = utils.strptime(STATE[entity])
-        STATE[entity] = utils.strftime(start.replace(second=start.second+1))
+        STATE[entity] = utils.strftime(start + datetime.timedelta(seconds=1))
 
     return STATE[entity]
 
