@@ -8,6 +8,7 @@ import requests
 import singer
 
 from tap_clubhouse import utils
+from operator import itemgetter
 
 
 REQUIRED_CONFIG_KEYS = ["api_token", "start_date"]
@@ -71,7 +72,7 @@ def gen_request(url, params=None, data=None):
     params["token"] = CONFIG["api_token"]
     data = data or {}
     rows = request(url, params, data).json()
-    for row in rows:
+    for row in sorted(rows, key=itemgetter("updated_at")):
         yield row
 
 
