@@ -24,5 +24,5 @@ setup(name='tap-clubhouse',
           ],
       },
       include_package_data=True,
-      download_url='https://github.com/envoy/tap-clubhouse'
+      download_url='https://github.com/envoy/tap-clubhouse/archive/0.1.0.tar.gz'
 )
