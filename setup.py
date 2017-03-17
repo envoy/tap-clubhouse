@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='tap-clubhouse',
-      version='0.0.1',
+      version='0.1.0',
       description='Singer.io tap for extracting data from the Clubhouse API',
       author='Kamal Mahyuddin',
       url='http://singer.io',
@@ -24,4 +24,5 @@ setup(name='tap-clubhouse',
           ],
       },
       include_package_data=True,
+      download_url='https://github.com/envoy/tap-clubhouse'
 )
