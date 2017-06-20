@@ -1,19 +1,80 @@
 {
   "type": "object",
   "properties": {
+    "archived": {
+      "type": "boolean"
+    },
+    "comment_ids": {
+      "type": "array",
+      "items": {
+        "type": ["null", "integer"]
+      }
+    },
+    "completed_at": {
+      "type": ["string","null"],
+      "format": "date-time"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deadline": {
+      "type": ["string","null"],
+      "format": "date-time"
+    },
+    "description": {
+      "type": "string"
+    },
+    "epic_id": {
+      "type": ["integer","null"]
+    },
+    "estiamte": {
+      "type": "integer"
+    },
+    "external_id": {
+      "type": ["string","null"]
+    },
+    "file_ids": {
+      "type": "array",
+      "items": {
+        "type": ["null", "integer"]
+      }
+    },
     "follower_ids": {
       "type": "array",
       "items": {
         "type": ["null", "string"]
       }
     },
-    "position": {
+    "id": {
       "type": "integer"
     },
-    "owner_ids": {
+    "labels": {
       "type": "array",
       "items": {
-        "type": ["null", "string"]
+        "type": ["null", "object"],
+        "properties": {
+          "color": {
+            "type": ["string","null"]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "external_id": {
+            "type": ["string","null"]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
       }
     },
     "linked_file_ids": {
@@ -22,61 +83,27 @@
         "type": ["null", "integer"]
       }
     },
-    "comments": {
-      "type": "array",
-      "items": {
-        "type": ["null", "object"],
-        "properties": {
-          "author_id": {
-            "type": "string"
-          },
-          "story_id": {
-            "type": "integer"
-          },
-          "position": {
-            "type": "integer"
-          },
-          "mention_ids": {
-            "type": "array",
-            "items": {
-              "type": ["null", "string"]
-            }
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "text": {
-            "type": "string"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "id": {
-            "type": "integer"
-          }
-        }
-      }
-    },
-    "estimate": {
-      "type": ["null", "integer"]
-    },
-    "created_at": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "story_type": {
+    "name": {
       "type": "string"
     },
-    "file_ids": {
+    "owner_ids": {
       "type": "array",
       "items": {
-        "type": ["null", "integer"]
+        "type": ["null", "string"]
       }
     },
-    "id": {
+    "position": {
       "type": "integer"
+    },
+    "project_id": {
+      "type": "integer"
+    },
+    "requested_by_id": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": ["string","null"],
+      "format": "date-time"
     },
     "story_links": {
       "type": "array",
@@ -87,8 +114,17 @@
             "type": "string",
             "format": "date-time"
           },
+          "id": {
+            "type": "integer"
+          },
+          "object_id": {
+            "type": "integer"
+          },
           "subject_id": {
             "type": "integer"
+          },
+          "type": {
+            "type": "string"
           },
           "updated_at": {
             "type": "string",
@@ -96,109 +132,18 @@
           },
           "verb": {
             "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "object_id": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "integer"
           }
         }
       }
     },
-    "labels": {
+    "story_type": {
+      "type": "string"
+    },
+    "task_ids": {
       "type": "array",
       "items": {
-        "type": ["null", "object"],
-        "properties": {
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "name": {
-            "type": "string"
-          },
-          "id": {
-            "type": "integer"
-          }
-        }
+        "type": ["null", "integer"]
       }
-    },
-    "project_id": {
-      "type": "integer"
-    },
-    "epic_id": {
-      "type": ["null", "integer"]
-    },
-    "tasks": {
-      "type": "array",
-      "items": {
-        "type": ["null", "object"],
-        "properties": {
-          "story_id": {
-            "type": "integer"
-          },
-          "position": {
-            "type": "integer"
-          },
-          "owner_ids": {
-            "type": "array",
-            "items": {
-              "type": ["null", "string"]
-            }
-          },
-          "mention_ids": {
-            "type": "array",
-            "items": {
-              "type": ["null", "string"]
-            }
-          },
-          "description": {
-            "type": "string"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "id": {
-            "type": "integer"
-          },
-          "completed_at": {
-            "type": ["null", "string"],
-            "format": "date-time"
-          },
-          "complete": {
-            "type": "boolean"
-          }
-        }
-      }
-    },
-    "deadline": {
-      "type": ["null", "string"],
-      "format": "date-time"
-    },
-    "name": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string"
-    },
-    "archived": {
-      "type": "boolean"
-    },
-    "requested_by_id": {
-      "type": "string"
     },
     "updated_at": {
       "type": "string",

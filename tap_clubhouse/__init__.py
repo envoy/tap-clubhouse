@@ -17,9 +17,11 @@ CONFIG = {}
 STATE = {}
 
 ENDPOINTS = {
-    "stories": "/api/v1/stories/search",
-    "workflows": "/api/v1/workflows",
-    "users": "/api/v1/users",
+    "stories": "/api/beta/stories/search",
+    "workflows": "/api/beta/workflows",
+    "users": "/api/beta/users",
+    "epics": "/api/beta/epics",
+    "projects": "/api/beta/projects"
 }
 
 LOGGER = singer.get_logger()
@@ -110,6 +112,7 @@ def sync_stories():
 
 
 def sync_time_filtered(entity):
+    LOGGER.info("Entity Syncing: " + entity)
     singer.write_schema(entity, utils.load_schema(entity), ["id"])
     start = get_start(entity)
 
@@ -127,6 +130,8 @@ def do_sync():
 
     sync_stories()
     sync_time_filtered("workflows")
+    sync_time_filtered("epics")
+    sync_time_filtered("projects")
     sync_time_filtered("users")
 
     LOGGER.info("Completed sync")
