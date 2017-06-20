@@ -1,0 +1,63 @@
+{
+  "type": "object",
+  "properties": {
+    "abbreviation": {
+      "type": "string"
+    },
+    "archived": {
+      "type": "boolean"
+    },
+    "color": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "days_to_thermometer": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "external_id": {
+      "type": ["string","null"]
+    },
+    "follower_ids": {
+      "type": "array",
+      "items": {
+        "type": ["null", "string"]
+      }
+    },
+    "id": {
+      "type": "integer"
+    },
+    "iteration_length": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "description"
+    },
+    "num_points": {
+      "type": "integer"
+    },
+    "num_stories": {
+      "type": "integer"
+    },
+    "show_thermometer": {
+      "type": "boolean"
+    },
+
+    "name": {
+      "type": "string"
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
