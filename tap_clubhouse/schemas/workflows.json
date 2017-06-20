@@ -8,31 +8,43 @@
       "type": "string",
       "format": "date-time"
     },
-    "updated_at": {
-      "type": "string",
-      "format": "date-time"
-    },
     "default_state_id": {
       "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
     },
     "states": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "description": {
-            "type": "string"
-          },
           "color": {
             "type": "string"
           },
-          "verb": {
-            "type": ["null", "string"]
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
           },
           "name": {
             "type": "string"
           },
           "num_stories": {
+            "type": "integer"
+          },
+          "position": {
             "type": "integer"
           },
           "type": {
@@ -42,18 +54,15 @@
             "type": "string",
             "format": "date-time"
           },
-          "id": {
-            "type": "integer"
-          },
-          "position": {
-            "type": "integer"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
+          "verb": {
+            "type": ["null", "string"]
           }
         }
       }
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
     }
   }
 }
