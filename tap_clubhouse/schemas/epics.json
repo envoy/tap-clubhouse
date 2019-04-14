@@ -138,8 +138,45 @@
       "type": ["string","null"],
       "format": "date-time"
     },
+    "started_at_override": {
+      "type": ["string","null"],
+      "format": "date-time"
+    },
     "state": {
       "type": "string"
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "last_story_update": {
+          "type": ["string","null"],
+          "format": "date-time"
+        },
+        "num_points": {
+          "type": "integer"
+        },
+        "num_points_done": {
+          "type": "integer"
+        },
+        "num_points_started": {
+          "type": "integer"
+        },
+        "num_points_unstarted": {
+          "type": "integer"
+        },
+        "num_stories_done": {
+          "type": "integer"
+        },
+        "num_stories_started": {
+          "type": "integer"
+        },
+        "num_stories_unestimated": {
+          "type": "integer"
+        },
+        "num_stories_unstarted": {
+          "type": "integer"
+        }
+      }
     },
     "updated_at": {
       "type": ["string","null"],
