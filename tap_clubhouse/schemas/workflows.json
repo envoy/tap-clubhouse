@@ -63,6 +63,9 @@
         }
       }
     },
+    "team_id": {
+      "type": "integer"
+    },
     "updated_at": {
       "type": "string",
       "format": "date-time"
