@@ -41,7 +41,7 @@
     "epic_id": {
       "type": ["integer","null"]
     },
-    "estiamte": {
+    "estimate": {
       "type": ["integer", "null"]
     },
     "external_id": {
@@ -82,35 +82,6 @@
           },
           "name": {
             "type": "string"
-          },
-          "stats": {
-            "type": "object",
-            "properties": {
-              "num_epics": {
-                "type": "integer"
-              },
-              "num_points_completed": {
-                "type": "integer"
-              },
-              "num_points_in_progress": {
-                "type": "integer"
-              },
-              "num_points_total": {
-                "type": "integer"
-              },
-              "num_stories_completed": {
-                "type": "integer"
-              },
-              "num_stories_in_progress": {
-                "type": "integer"
-              },
-              "num_stories_total": {
-                "type": "integer"
-              },
-              "num_stories_unestimated": {
-                "type": "integer"
-              }
-            }
           },
           "updated_at": {
             "type": ["string","null"],
@@ -161,7 +132,7 @@
     "story_links": {
       "type": "array",
       "items": {
-        "type": ["null", "object"],
+        "type": "object",
         "properties": {
           "created_at": {
             "type": "string",

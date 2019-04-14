@@ -71,35 +71,6 @@
           "name": {
             "type": "string"
           },
-          "stats": {
-            "type": "object",
-            "properties": {
-              "num_epics": {
-                "type": "integer"
-              },
-              "num_points_completed": {
-                "type": "integer"
-              },
-              "num_points_in_progress": {
-                "type": "integer"
-              },
-              "num_points_total": {
-                "type": "integer"
-              },
-              "num_stories_completed": {
-                "type": "integer"
-              },
-              "num_stories_in_progress": {
-                "type": "integer"
-              },
-              "num_stories_total": {
-                "type": "integer"
-              },
-              "num_stories_unestimated": {
-                "type": "integer"
-              }
-            }
-          },
           "updated_at": {
             "type": ["string","null"],
             "format": "date-time"
