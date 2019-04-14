@@ -21,7 +21,8 @@ ENDPOINTS = {
     "stories": "/api/v2/search/stories",
     "epics": "/api/v2/search/epics",
     "workflows": "/api/v2/workflows",
-    "projects": "/api/v2/projects"
+    "projects": "/api/v2/projects",
+    "members": "/api/v2/members",
 }
 
 LOGGER = singer.get_logger()
@@ -140,6 +141,7 @@ def do_sync():
     sync_searched("epics")
     sync_time_filtered("workflows")
     sync_time_filtered("projects")
+    sync_time_filtered("members")
 
     LOGGER.info("Completed sync")
 
