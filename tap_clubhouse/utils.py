@@ -12,10 +12,11 @@ DATETIME_FMT = "%Y-%m-%dT%H:%M:%SZ"
 def strptime(dt):
     return datetime.datetime.strptime(dt, DATETIME_FMT)
 
-
 def strftime(dt):
     return dt.strftime(DATETIME_FMT)
 
+def strfdate(dt):
+    return dt.strftime(DATE_FMT)
 
 def ratelimit(limit, every):
     def limitdecorator(fn):
