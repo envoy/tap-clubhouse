@@ -1,9 +1,6 @@
 {
   "type": "object",
   "properties": {
-    "id": {
-      "type": "integer"
-    },
     "created_at": {
       "type": "string",
       "format": "date-time"
@@ -12,6 +9,9 @@
       "type": "integer"
     },
     "description": {
+      "type": "string"
+    },
+    "entity_type": {
       "type": "string"
     },
     "id": {
@@ -35,6 +35,9 @@
           "description": {
             "type": "string"
           },
+          "entity_type": {
+            "type": "string"
+          },
           "id": {
             "type": "integer"
           },
@@ -55,7 +58,7 @@
             "format": "date-time"
           },
           "verb": {
-            "type": ["null", "string"]
+            "type": ["string","null"]
           }
         }
       }
