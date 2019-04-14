@@ -19,8 +19,8 @@ STATE = {}
 
 ENDPOINTS = {
     "stories": "/api/v2/search/stories",
+    "epics": "/api/v2/search/epics",
     "workflows": "/api/v2/workflows",
-    "epics": "/api/v2/epics",
     "projects": "/api/v2/projects"
 }
 
@@ -137,8 +137,8 @@ def do_sync():
     LOGGER.info("Starting Clubhouse sync")
 
     sync_searched("stories")
+    sync_searched("epics")
     sync_time_filtered("workflows")
-    sync_time_filtered("epics")
     sync_time_filtered("projects")
 
     LOGGER.info("Completed sync")
