@@ -15,9 +15,6 @@ def strptime(dt):
 def strftime(dt):
     return dt.strftime(DATETIME_FMT)
 
-def strfdate(dt):
-    return dt.strftime(DATE_FMT)
-
 def ratelimit(limit, every):
     def limitdecorator(fn):
         times = collections.deque()
