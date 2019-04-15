@@ -100,7 +100,7 @@ def gen_request(entity, params=None, data=None):
         yield from gen_request(entity, params=next_params)
 
 
-def sync_searched(entity):
+def sync_search(entity):
     singer.write_schema(entity, utils.load_schema(entity), ["id"])
 
     start = get_start(entity)
@@ -112,17 +112,18 @@ def sync_searched(entity):
         "query": "updated:" + start_date + ".." + end_date,
     }
 
+    LOGGER.info("Syncing {} from {}".format(entity, start))
     for _, row in enumerate(gen_request(entity, params=params)):
-        LOGGER.info("Syncing {} id {}".format(entity, row["id"]))
-        utils.update_state(STATE, entity, row["updated_at"])
-        singer.write_record(entity, row)
+        if row["updated_at"] >= start:
+            utils.update_state(STATE, entity, row["updated_at"])
+            singer.write_record(entity, row)
 
     singer.write_state(STATE)
 
 
-def sync_time_filtered(entity):
-    LOGGER.info("Entity Syncing: " + entity)
+def sync_list(entity):
     singer.write_schema(entity, utils.load_schema(entity), ["id"])
+
     start = get_start(entity)
 
     LOGGER.info("Syncing {} from {}".format(entity, start))
@@ -137,11 +138,11 @@ def sync_time_filtered(entity):
 def do_sync():
     LOGGER.info("Starting Clubhouse sync")
 
-    sync_searched("stories")
-    sync_searched("epics")
-    sync_time_filtered("workflows")
-    sync_time_filtered("projects")
-    sync_time_filtered("members")
+    sync_search("stories")
+    sync_search("epics")
+    sync_list("workflows")
+    sync_list("projects")
+    sync_list("members")
 
     LOGGER.info("Completed sync")
 
