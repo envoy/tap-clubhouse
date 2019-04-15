@@ -20,8 +20,9 @@ STATE = {}
 ENDPOINTS = {
     "stories": "/api/v2/search/stories",
     "epics": "/api/v2/search/epics",
-    "workflows": "/api/v2/workflows",
     "projects": "/api/v2/projects",
+    "milestones": "/api/v2/milestones",
+    "teams": "/api/v2/teams",
     "members": "/api/v2/members",
 }
 
@@ -140,8 +141,9 @@ def do_sync():
 
     sync_search("stories")
     sync_search("epics")
-    sync_list("workflows")
     sync_list("projects")
+    sync_list("milestones")
+    sync_list("teams")
     sync_list("members")
 
     LOGGER.info("Completed sync")
