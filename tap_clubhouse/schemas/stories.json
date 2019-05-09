@@ -1,16 +1,26 @@
 {
   "type": "object",
   "properties": {
+    "app_url": {
+      "type": "string"
+    },
     "archived": {
       "type": "boolean"
     },
-    "comment_ids": {
-      "type": "array",
-      "items": {
-        "type": ["null", "integer"]
-      }
+    "blocked": {
+      "type": "boolean"
+    },
+    "blocker": {
+      "type": "boolean"
+    },
+    "completed": {
+      "type": "boolean"
     },
     "completed_at": {
+      "type": ["string","null"],
+      "format": "date-time"
+    },
+    "completed_at_override": {
       "type": ["string","null"],
       "format": "date-time"
     },
@@ -25,25 +35,22 @@
     "description": {
       "type": "string"
     },
+    "entity_type": {
+      "type": "string"
+    },
     "epic_id": {
       "type": ["integer","null"]
     },
-    "estiamte": {
-      "type": "integer"
+    "estimate": {
+      "type": ["integer", "null"]
     },
     "external_id": {
       "type": ["string","null"]
     },
-    "file_ids": {
-      "type": "array",
-      "items": {
-        "type": ["null", "integer"]
-      }
-    },
     "follower_ids": {
       "type": "array",
       "items": {
-        "type": ["null", "string"]
+        "type": "string"
       }
     },
     "id": {
@@ -52,14 +59,20 @@
     "labels": {
       "type": "array",
       "items": {
-        "type": ["null", "object"],
+        "type": "object",
         "properties": {
+          "archived": {
+            "type": "boolean"
+          },
           "color": {
             "type": ["string","null"]
           },
           "created_at": {
-            "type": "string",
+            "type": ["string","null"],
             "format": "date-time"
+          },
+          "entity_type": {
+            "type": "string"
           },
           "external_id": {
             "type": ["string","null"]
@@ -71,17 +84,21 @@
             "type": "string"
           },
           "updated_at": {
-            "type": "string",
+            "type": ["string","null"],
             "format": "date-time"
           }
         }
       }
     },
-    "linked_file_ids": {
+    "mention_ids": {
       "type": "array",
       "items": {
-        "type": ["null", "integer"]
+        "type": "string"
       }
+    },
+    "moved_at": {
+      "type": ["string","null"],
+      "format": "date-time"
     },
     "name": {
       "type": "string"
@@ -89,7 +106,7 @@
     "owner_ids": {
       "type": "array",
       "items": {
-        "type": ["null", "string"]
+        "type": "string"
       }
     },
     "position": {
@@ -101,18 +118,28 @@
     "requested_by_id": {
       "type": "string"
     },
+    "started": {
+      "type": "boolean"
+    },
     "started_at": {
+      "type": ["string","null"],
+      "format": "date-time"
+    },
+    "started_at_override": {
       "type": ["string","null"],
       "format": "date-time"
     },
     "story_links": {
       "type": "array",
       "items": {
-        "type": ["null", "object"],
+        "type": "object",
         "properties": {
           "created_at": {
             "type": "string",
             "format": "date-time"
+          },
+          "entity_type": {
+            "type": "string"
           },
           "id": {
             "type": "integer"
@@ -139,14 +166,8 @@
     "story_type": {
       "type": "string"
     },
-    "task_ids": {
-      "type": "array",
-      "items": {
-        "type": ["null", "integer"]
-      }
-    },
     "updated_at": {
-      "type": "string",
+      "type": ["string","null"],
       "format": "date-time"
     },
     "workflow_state_id": {

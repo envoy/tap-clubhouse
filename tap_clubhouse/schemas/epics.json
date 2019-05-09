@@ -1,38 +1,36 @@
 {
   "type": "object",
   "properties": {
-    "follower_ids": {
-      "type": "array",
-      "items": {
-        "type": ["null", "string"]
-      }
+    "archived": {
+      "type": "boolean"
     },
-    "deadline": {
-      "type": ["string","null"],
-      "format": "date-time"
-    },
-    "created_at": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "updated_at": {
-      "type": "string",
-      "format": "date-time"
+    "completed": {
+      "type": "boolean"
     },
     "completed_at": {
       "type": ["string","null"],
       "format": "date-time"
     },
-    "started_at": {
+    "completed_at_override": {
       "type": ["string","null"],
       "format": "date-time"
     },
-    "last_story_update": {
-      "type": "string",
+    "created_at": {
+      "type": ["string","null"],
+      "format": "date-time"
+    },
+    "deadline": {
+      "type": ["string","null"],
       "format": "date-time"
     },
     "description": {
       "type": "string"
+    },
+    "entity_type": {
+      "type": "string"
+    },
+    "epic_state_id": {
+      "type": "integer"
     },
     "external_id": {
       "type": ["string","null"]
@@ -40,19 +38,50 @@
     "follower_ids": {
       "type": "array",
       "items": {
-        "type": ["null", "string"]
+        "type": "string"
       }
     },
-    "owner_ids": {
+    "id": {
+      "type": "integer"
+    },
+    "labels": {
       "type": "array",
       "items": {
-        "type": ["null", "string"]
+        "type": "object",
+        "properties": {
+          "archived": {
+            "type": "boolean"
+          },
+          "color": {
+            "type": ["string","null"]
+          },
+          "created_at": {
+            "type": ["string","null"],
+            "format": "date-time"
+          },
+          "entity_type": {
+            "type": "string"
+          },
+          "external_id": {
+            "type": ["string","null"]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": ["string","null"],
+            "format": "date-time"
+          }
+        }
       }
     },
-    "project_ids": {
+    "mention_ids": {
       "type": "array",
       "items": {
-        "type": ["null", "integer"]
+        "type": "string"
       }
     },
     "milestone_id": {
@@ -61,78 +90,68 @@
     "name": {
       "type": "string"
     },
-    "num_points": {
-      "type": "integer"
-    },
-    "num_points_done": {
-      "type": "integer"
-    },
-    "num_points_started": {
-      "type": "integer"
-    },
-    "num_points_unstarted": {
-      "type": "integer"
-    },
-    "num_stories_done": {
-      "type": "integer"
-    },
-    "num_stories_started": {
-      "type": "integer"
-    },
-    "num_stories_unestimated": {
-      "type": "integer"
-    },
-    "num_stories_unstarted": {
-      "type": "integer"
+    "owner_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "position": {
       "type": "integer"
     },
-    "id": {
-      "type": "integer"
+    "requested_by_id": {
+      "type": "string"
     },
-    "comments": {
-      "type": "array",
-      "items": {
-        "type": ["null", "object"],
-        "properties": {
-          "author_id": {
-            "type": "string"
-          },
-          "story_id": {
-            "type": "integer"
-          },
-          "position": {
-            "type": "integer"
-          },
-          "mention_ids": {
-            "type": "array",
-            "items": {
-              "type": ["null", "string"]
-            }
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "text": {
-            "type": "string"
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "id": {
-            "type": "integer"
-          }
-        }
-      }
-    },
-    "archived": {
+    "started": {
       "type": "boolean"
+    },
+    "started_at": {
+      "type": ["string","null"],
+      "format": "date-time"
+    },
+    "started_at_override": {
+      "type": ["string","null"],
+      "format": "date-time"
     },
     "state": {
       "type": "string"
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "last_story_update": {
+          "type": ["string","null"],
+          "format": "date-time"
+        },
+        "num_points": {
+          "type": "integer"
+        },
+        "num_points_done": {
+          "type": "integer"
+        },
+        "num_points_started": {
+          "type": "integer"
+        },
+        "num_points_unstarted": {
+          "type": "integer"
+        },
+        "num_stories_done": {
+          "type": "integer"
+        },
+        "num_stories_started": {
+          "type": "integer"
+        },
+        "num_stories_unestimated": {
+          "type": "integer"
+        },
+        "num_stories_unstarted": {
+          "type": "integer"
+        }
+      }
+    },
+    "updated_at": {
+      "type": ["string","null"],
+      "format": "date-time"
     }
   }
 }
