@@ -12,7 +12,7 @@ setup(name='tap-clubhouse',
       py_modules=['tap_clubhouse'],
       install_requires=[
           'singer-python>=0.2.1',
-          'requests==2.12.4',
+          'requests==2.31.0',
       ],
       entry_points='''
           [console_scripts]
