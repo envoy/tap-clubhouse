@@ -1,0 +1,87 @@
+{
+  "type": "object",
+  "properties": {
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "archived": {
+            "type": "boolean"
+          },
+          "color": {
+            "type": ["string","null"]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "entity_type": {
+            "type": "string"
+          },
+          "external_id": {
+            "type": ["string","null"]
+          },
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "completed": {
+      "type": "boolean"
+    },
+    "completed_at": {
+      "type": ["string","null"],
+      "format": "date-time"
+    },
+    "completed_at_override": {
+      "type": ["string","null"],
+      "format": "date-time"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "description": {
+      "type": "string"
+    },
+    "entity_type": {
+      "type": "string"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "position": {
+      "type": "integer"
+    },
+    "started": {
+      "type": "boolean"
+    },
+    "started_at": {
+      "type": ["string","null"],
+      "format": "date-time"
+    },
+    "started_at_override": {
+      "type": ["string","null"],
+      "format": "date-time"
+    },
+    "state": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

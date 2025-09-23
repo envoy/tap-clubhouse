@@ -5,9 +5,12 @@ This is a [Singer](https://singer.io) tap that produces JSON-formatted data foll
 This tap:
 - Pulls raw data from Clubhouse's [REST API](https://clubhouse.io/api/v1/)
 - Extracts the following resources from Clubhouse:
-  - [Stories](https://clubhouse.io/api/v1/#stories)
-  - [Workflows](https://clubhouse.io/api/v1/#workflows)
-  - [Users](https://clubhouse.io/api/v1/#users)
+  - [Stories](https://api.clubhouse.io/api/v2/search/stories)
+  - [Epics](https://api.clubhouse.io/api/v2/search/epics)
+  - [Projects](https://api.clubhouse.io/api/v2/projects)
+  - [Milestones](https://api.clubhouse.io/api/v2/milestones)
+  - [Teams](https://api.clubhouse.io/api/v2/teams)
+  - [Members](https://api.clubhouse.io/api/v2/members)
 - Outputs the schema for each resource
 - Incrementally pulls data based on the input state
 

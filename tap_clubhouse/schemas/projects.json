@@ -2,22 +2,28 @@
   "type": "object",
   "properties": {
     "abbreviation": {
-      "type": "string"
+      "type": ["string","null"]
     },
     "archived": {
       "type": "boolean"
     },
     "color": {
-      "type": "string"
+      "type": ["string","null"]
     },
     "created_at": {
-      "type": "string",
+      "type": ["string","null"],
       "format": "date-time"
     },
     "days_to_thermometer": {
       "type": "integer"
     },
     "description": {
+      "type": ["string","null"]
+    },
+    "external_id": {
+      "type": ["string","null"]
+    },
+    "entity_type": {
       "type": "string"
     },
     "external_id": {
@@ -26,7 +32,7 @@
     "follower_ids": {
       "type": "array",
       "items": {
-        "type": ["null", "string"]
+        "type": "string"
       }
     },
     "id": {
@@ -36,27 +42,31 @@
       "type": "integer"
     },
     "name": {
-      "type": "description"
-    },
-    "num_points": {
-      "type": "integer"
-    },
-    "num_stories": {
-      "type": "integer"
+      "type": "string"
     },
     "show_thermometer": {
       "type": "boolean"
-    },
-
-    "name": {
-      "type": "string"
     },
     "start_time": {
       "type": "string",
       "format": "date-time"
     },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "num_points": {
+          "type": "integer"
+        },
+        "num_stories": {
+          "type": "integer"
+        }
+      }
+    },
+    "team_id": {
+      "type": "integer"
+    },
     "updated_at": {
-      "type": "string",
+      "type": ["string","null"],
       "format": "date-time"
     }
   }

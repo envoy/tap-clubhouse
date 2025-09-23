@@ -1,0 +1,76 @@
+{
+  "type": "object",
+  "properties": {
+    "created_at": {
+      "type": ["string","null"],
+      "format": "date-time"
+    },
+    "disabled": {
+      "type": "boolean"
+    },
+    "entity_type": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "profile": {
+      "type": "object",
+      "properties": {
+        "deactivated": {
+          "type": "boolean"
+        },
+        "display_icon": {
+          "type": ["object","null"],
+          "properties": {
+            "created_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "entity_type": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "url": {
+              "type": "string"
+            }
+          }
+        },
+        "email_address": {
+          "type": ["string","null"]
+        },
+        "entity_type": {
+          "type": "string"
+        },
+        "gravatar_hash": {
+          "type": ["string","null"]
+        },
+        "id": {
+          "type": "string"
+        },
+        "mention_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "two_factor_auth_activated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "role": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": ["string","null"],
+      "format": "date-time"
+    }
+  }
+}

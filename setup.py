@@ -22,10 +22,11 @@ setup(name='tap-clubhouse',
       package_data = {
           'tap_clubhouse/schemas': [
               'epics.json',
+              'members.json',
+              'milestones.json',
               'projects.json',
               'stories.json',
-              'users.json',
-              'workflows.json'
+              'teams.json',
           ],
       },
       include_package_data=True,

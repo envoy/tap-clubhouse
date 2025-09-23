@@ -3,6 +3,7 @@
 import sys
 import time
 import datetime
+import urllib.parse
 from operator import itemgetter
 
 import requests
@@ -17,11 +18,12 @@ CONFIG = {}
 STATE = {}
 
 ENDPOINTS = {
-    "stories": "/api/beta/stories/search",
-    "workflows": "/api/beta/workflows",
-    "users": "/api/beta/users",
-    "epics": "/api/beta/epics",
-    "projects": "/api/beta/projects"
+    "stories": "/api/v2/search/stories",
+    "epics": "/api/v2/search/epics",
+    "projects": "/api/v2/projects",
+    "milestones": "/api/v2/milestones",
+    "teams": "/api/v2/teams",
+    "members": "/api/v2/members",
 }
 
 LOGGER = singer.get_logger()
@@ -82,38 +84,47 @@ def gen_request(entity, params=None, data=None):
     params = params or {}
     params["token"] = CONFIG["api_token"]
     data = data or {}
-    rows = request(url, params, data).json()
+    next_params = None
+    resp = request(url, params, data).json()
 
-    # fix clubhouse user not having created_at/updated_at
-    if entity == "users":
-        for row in rows:
-            permission = row["permissions"][0]
-            row["created_at"] = permission["created_at"]
-            row["updated_at"] = permission["updated_at"]
+    if isinstance(resp, dict) and "data" in resp.keys():
+        rows = resp["data"]
+        if "next" in resp.keys() and resp["next"] != None:
+            next_params = urllib.parse.parse_qs(urllib.parse.urlparse(resp["next"]).query)
+    else:
+        rows = resp
 
     for row in sorted(rows, key=itemgetter("updated_at")):
         yield row
 
+    if next_params != None:
+        yield from gen_request(entity, params=next_params)
 
-def sync_stories():
-    singer.write_schema("stories", utils.load_schema("stories"), ["id"])
 
-    start = get_start("stories")
-    data = {
-        "updated_at_start": start,
+def sync_search(entity):
+    singer.write_schema(entity, utils.load_schema(entity), ["id"])
+
+    start = get_start(entity)
+    start_date = start.partition("T")[0]
+    end_date = datetime.date.today().strftime("%Y-%m-%d")
+
+    params = {
+        "page_size": 25,
+        "query": "updated:" + start_date + ".." + end_date,
     }
 
-    for _, row in enumerate(gen_request("stories", data=data)):
-        LOGGER.info("Story {}: Syncing".format(row["id"]))
-        utils.update_state(STATE, "stories", row["updated_at"])
-        singer.write_record("stories", row)
+    LOGGER.info("Syncing {} from {}".format(entity, start))
+    for _, row in enumerate(gen_request(entity, params=params)):
+        if row["updated_at"] >= start:
+            utils.update_state(STATE, entity, row["updated_at"])
+            singer.write_record(entity, row)
 
     singer.write_state(STATE)
 
 
-def sync_time_filtered(entity):
-    LOGGER.info("Entity Syncing: " + entity)
+def sync_list(entity):
     singer.write_schema(entity, utils.load_schema(entity), ["id"])
+
     start = get_start(entity)
 
     LOGGER.info("Syncing {} from {}".format(entity, start))
@@ -128,11 +139,12 @@ def sync_time_filtered(entity):
 def do_sync():
     LOGGER.info("Starting Clubhouse sync")
 
-    sync_stories()
-    sync_time_filtered("workflows")
-    sync_time_filtered("epics")
-    sync_time_filtered("projects")
-    sync_time_filtered("users")
+    sync_search("stories")
+    sync_search("epics")
+    sync_list("projects")
+    sync_list("milestones")
+    sync_list("teams")
+    sync_list("members")
 
     LOGGER.info("Completed sync")
 
