@@ -1,0 +1,40 @@
+name: Lint
+
+on:
+  push:
+    branches: ['master']
+  pull_request:
+    branches: ['master']
+
+permissions:
+  contents: read
+
+jobs:
+  pylint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The original CircleCI config used Python 3.4, which GitHub Actions no longer provides.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pylint==4.1.3 .
+
+      # The first four disables come from the original CircleCI config. The rest are
+      # checks that modern pylint reports on this 2017-era code.
+      - name: Run pylint
+        run: >-
+          pylint tap_clubhouse
+          -d missing-docstring
+          -d logging-format-interpolation
+          -d too-many-locals
+          -d too-many-arguments
+          -d consider-using-f-string
+          -d unspecified-encoding
+          -d broad-exception-raised
+          -d use-yield-from
+          -d no-else-return
+          -d logging-not-lazy
